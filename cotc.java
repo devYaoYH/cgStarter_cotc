@@ -510,6 +510,9 @@ class Player {
         }
     }
 
+    ///////////////////
+    // MAIN AI Class //
+    ///////////////////
     // Simulation Class
     private class Simul {
 
@@ -525,10 +528,14 @@ class Player {
             init_time = time;
         }
 
-        // Main AI Step generation function
+        //////////////////////////////////////
+        // Main AI Step generation function //
+        //////////////////////////////////////
         public ArrayList<Point> run(){
             //Store our combination of moves (for list of ships)
             ArrayList<Point> moves = new ArrayList<Point>();
+
+            // WRITE YOUR AI HERE
 
             if (DEBUG_GAME_STATE){
                 init_state.debug();
@@ -553,10 +560,12 @@ class Player {
             return moves;
         }
 
-        // Selection policies
+        ////////////////////////
+        // Selection policies //
+        ////////////////////////
+        // Nearest barrel move selection policy
         public Point nearest_barrel(State state, Point p){
-            // Wrong mahanttan distance used
-            // Also super-inefficient O(n) algo
+            // Super-inefficient O(n) algo
             int min_dist = 999999;
             Barrel near_b = null;
             Point s_pos = p;
@@ -572,6 +581,7 @@ class Player {
                 System.err.println(s_pos.hex() + " -> " + near_b.pos.hex() + ":" + s_pos.dist(s_pos));
                 return near_b.pos;
             }
+            // Return default pathing to center of map if no more barrels
             return COORDS[12][10];
         }
 
@@ -649,6 +659,9 @@ class Player {
             // Run some selection policy using our game engine
             ArrayList<Point> my_moves = simul.run();
             for (Point p: my_moves){
+                // Currently in Wood Leagues (below bronze) we only have MOVE command
+                // In higher leagues, we would probably want to change simul.run() to return 
+                // an ArrayList of Actions (enum) values instead and write smething to parse that
                 System.out.println(String.format("MOVE %d %d", p.x, p.y));
             }
         }
