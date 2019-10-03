@@ -1,4 +1,4 @@
-#CotC Java starter code with Simulation Engine
+# CotC Java starter code with Simulation Engine
 
 ## Pseudo-code Outline
 
