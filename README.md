@@ -1,6 +1,14 @@
 #CotC Java starter code with Simulation Engine
 
-## Brief structure of AI bot algorithm
+## Pseudo-code Outline
+
+Read input -> Update Game State -> Query Next Action
+
+Within "Query Next Action":
+
+Generate possible futures -> Run selection policy -> Return best course of action
+
+## Brief structure of java AI bot program
 
 ```java
 public static void main(String args[]){
@@ -12,9 +20,21 @@ public static void main(String args[]){
 // GAME OBJECTS //
 //////////////////
 
+private class Simul {
+	public void init(State s, long t){
+		//Keep simul up to date with new game state
+	}
+	public ArrayList<Point> run(){
+		//Generate Game Search Tree from init state
+		//Run Selection policy
+		//Return best action(s) to take
+	}
+}
+
 // Main Function
 private void run(){
 	//Setup Precomputations
+	Simul simul = new Simul();	//Declare our AI simulation engine
 
 	//Start each turn
 	while(true){
